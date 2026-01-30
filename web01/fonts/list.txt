@@ -1,0 +1,33 @@
+./fonts/NotoSansKR-Black.ttf
+./fonts/NotoSansKR-Bold.ttf
+./fonts/NotoSansKR-ExtraBold.ttf
+./fonts/NotoSansKR-ExtraLight.ttf
+./fonts/NotoSansKR-Light.ttf
+./fonts/NotoSansKR-Medium.ttf
+./fonts/NotoSansKR-Regular.ttf
+./fonts/NotoSansKR-SemiBold.ttf
+./fonts/NotoSansKR-Thin.ttf
+./fonts/NotoSansKR-VariableFont_wght.ttf
+./fonts/SeoulAlrimTTF-Bold.ttf
+./fonts/SeoulAlrimTTF-ExtraBold.ttf
+./fonts/SeoulAlrimTTF-Heavy.ttf
+./fonts/SeoulAlrimTTF-Medium.ttf
+./fonts/SeoulHangangB.ttf
+./fonts/SeoulHangangEB.ttf
+./fonts/SeoulHangangL.ttf
+./fonts/SeoulHangangM.ttf
+./fonts/SeoulNamsanB.ttf
+./fonts/SeoulNamsanEB.ttf
+./fonts/SeoulNamsanL.ttf
+./fonts/SeoulNamsanM.ttf
+./fonts/SeoulNamsanvert.ttf
+./fonts/서울남산 장체B.ttf
+./fonts/서울남산 장체BL.ttf
+./fonts/서울남산 장체EB.ttf
+./fonts/서울남산 장체L.ttf
+./fonts/서울남산 장체M.ttf
+./fonts/서울한강 장체B.ttf
+./fonts/서울한강 장체BL.ttf
+./fonts/서울한강 장체EB.ttf
+./fonts/서울한강 장체L.ttf
+./fonts/서울한강 장체M.ttf

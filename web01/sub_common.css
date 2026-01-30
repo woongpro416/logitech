@@ -1,0 +1,435 @@
+@charset "utf-8";
+
+.content {
+    clear:both;
+}
+
+.content:after {
+    content:"";
+    display: block;
+    width: 100%;
+}
+
+.title_box {
+    display: block;
+    width: 100%;
+    margin-bottom: 70px;
+}
+
+#vs1 {
+    clear:both;
+    min-height: 200px;
+    overflow: hidden;
+    width: 100vw;
+    background-image: url("./output/sub1/bgi.jpg");
+    background-position:center top;
+    background-repeat: repeat-x;
+}
+
+.vs_tit {
+    text-align: center;
+    font-size: 48px;
+    padding-top: 1.5em;
+    color: #000000;
+    font-weight: 500;
+}
+
+.vs_sub_tit {
+    text-align: center;
+    color:#000000; 
+    font-weight: 400;
+    font-size:24px;
+    padding-top: 1.5em;
+}
+
+/* 1. 전체를 오른쪽 끝으로 정렬 */
+.path_clearfix {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  align-items: center;
+  padding: 13px 20px;
+  margin-right: 295px;
+  
+}
+
+/* 2. 버튼 리스트 가로 배치 */
+.clearfix {
+  display: flex;
+  float: left;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+/* 3. 버튼 크기 및 테두리 조정 */
+.addons li, .home {
+  width: 34px;  /* 버튼 가로 크기 */
+  height: 34px; /* 버튼 세로 크기 */
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+/* 공통 아이콘 설정 */
+.ico {
+  display: block;
+  width: 40px;  
+  height: 40px; 
+  background: url('./output/share.png') no-repeat;
+  text-indent: -9999px;
+}
+
+.btn_home .ico {
+   background-position: 12.5px 12.5px;
+}
+.btn_print .ico {
+  background-position: 12px -18px;
+}
+
+.btn_share .ico {
+  background-position: -22px -19px;
+}
+
+
+/* .page_box {
+    display: block;
+    position: relative;
+    margin-left: 10px;
+    border: 1px solid;
+} */
+
+
+.content_wrap {
+    width: 1280px;
+    margin: 0 auto; 
+    margin-top: -130px;
+}
+
+#left_bar {
+    width: 200px;
+    float: left;
+    flex-shrink: 0;
+}
+
+.content_art {
+    width: 1080px;
+    float: right;
+}
+
+.lnb_tit {
+    background-color: #2e70b4;
+    color: #fff;
+    font-weight: 500;
+    line-height: 130px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#lnb {
+    clear:both;
+    min-height: 100vh;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+#lnb li {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+}
+
+#lnb li a {
+    display: block;
+    color: #333;
+    font-weight: 500;
+    padding-left: 24px;
+    height: 48px;
+    line-height: 48px; 
+}
+
+#lnb li a.active {
+    background-color: #0b99e0;
+    color: #fff;
+}
+
+.page_tit_box {
+    height: 130px;
+    background-color: rgba(255,255,255,0.85);
+    padding-left: 24px;
+}
+
+.page_tit {
+    line-height:60px;
+    font-size: 28px;
+    padding-top: 18px;
+}
+
+.breadcrumb a, .breadcrumb span {
+    padding-right: 10px;
+    font-weight: 400;
+}
+
+.breadcrumb span {
+    padding-left: 8px;
+}
+
+.tab_ra {
+    display: none;
+}
+
+.content_box .art {
+    display: none;
+    clear: both; 
+}
+
+#tab_ra1:checked ~ .content_box #art1 {
+    display: block;
+}
+
+#tab_ra2:checked ~ .content_box #art2 {
+    display: block;
+}
+
+#tab_ra3:checked ~ .content_box #art3 {
+    display: block;
+}
+
+#tab_ra4:checked ~ .content_box #art4 {
+    display: block;
+}
+
+#tab_ra5:checked ~ .content_box #art5 {
+    display: block;
+}
+
+.btn_box {
+    width: 100%;
+    clear: both;
+    height: 38px;
+    border-bottom: 1px solid rgb(209, 243, 255);
+    box-shadow: 1px 1px 0px #999; 
+}
+
+.btn_box .tab_btn {
+    display: block;
+    width: 20%;
+    float:left; 
+    text-align: center;
+    font-weight: 500;
+    color: #333;
+    line-height:38px;
+    cursor: pointer;
+}
+
+#tab_ra1:checked ~ .btn_box #tab_btn1 {
+    background-color: gold;
+} 
+
+#tab_ra2:checked ~ .btn_box #tab_btn2 {
+    background-color: gold;
+} 
+
+#tab_ra3:checked ~ .btn_box #tab_btn3 {
+    background-color: gold;
+} 
+
+#tab_ra4:checked ~ .btn_box #tab_btn4 {
+    background-color: gold;
+} 
+
+#tab_ra5:checked ~ .btn_box #tab_btn5 {
+    background-color: gold;
+} 
+
+
+.gallery-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  width: auto;
+  gap: 30px;
+  padding: 20px;
+  margin-top: 5px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+
+.card-box {
+  border: 1px solid #cecece;
+  overflow: hidden; /* 사진이 박스 밖으로 나가지 않게 가둠 */
+  border-radius: 0px 20px 0px 20px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  margin: 1px;
+}
+
+.img-wrapper {
+    height: 200px; }
+.img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.text-area { padding: 15px; text-align: center; background: #fff; }
+.text-area a:hover { text-decoration: underline;}
+
+
+
+.copy_wrapper {
+  display: flex;
+  align-items: center; /* 이미지와 텍스트 높이 맞춤 */
+  border: 1px solid #ddd;
+  padding: 30px 30px;
+  margin-bottom: 40px;
+  gap: 120px;
+}
+
+.copyright img {
+    width: 183px;
+    height: 54px;
+}
+
+.copy_wrapper p {
+    font-weight: 600;}
+.copy_wrapper span { color: #ff3c3c;}
+
+
+
+/*
+bg_visual-1.gif
+
+*/
+
+
+
+
+
+
+
+.sub12thumb {
+    display:block;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.sub12thumb img {
+    width: 890px;
+    height: 196px;
+    margin-top: 10px;
+    margin-left: 95px;
+}
+
+.con .form_wrap {
+    margin: 20px;
+    padding: 20px;
+}
+
+.sec_tit {
+    font-size: 40px;
+    
+    font-weight: 800px;
+    margin-bottom: 20px;
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.btn-top {
+  position: fixed;    
+  bottom: 30px;       
+  right: 30px;        
+  width: 50px;        
+  height: 50px;       
+  background-color: #333; 
+  color: #fff;        
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 999;       
+  transition: 0.3s;   
+}
+
+.btn-top:hover {
+  background-color: #0056b3;
+}
+
+.form_wrap .form1{
+    border: 1px solid #ffffff;
+    background-color: #efefef;
+    width: 100%;
+    height: 150px;
+}
+
+.txt_ctrl {
+    border: 1px solid #b1b1b1;
+    position: relative;
+    top: 20px;
+    left: 17%;
+    margin-right: 50px;
+    width: 300px;
+    height: 55px;
+    text-align: left;
+}
+
+.btn_con {
+    display: flex;
+    justify-content: center;
+    padding-top: 38px;
+    gap: 80px;
+}
+
+.btn_login {
+
+    width: 160px;
+    height: 40px;
+    display: block;
+    background-color: #0056b3;
+    border: 1px solid #007bb9;
+    border-radius: 5%;
+}
+
+.btn_login p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.btn_join {
+    width: 160px;
+    height: 40px;
+    display: block;
+    background-color: #0056b3;
+    border: 1px solid #007bb9;
+    border-radius: 5%;
+}
+
+.btn_join p {
+    text-align: center center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.btn_find {
+    width: 195px;
+    height: 40px;
+    display: block;
+    background-color: #0056b3;
+    border: 1px solid #007bb9;
+    border-radius: 5%;
+}
+
+.btn_find p {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+.customerBox {
+    display: block;
+
+    border: 1px solid #ffffff;
+}

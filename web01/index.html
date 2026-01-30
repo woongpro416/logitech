@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+    <title>안산시 문화관광</title>
+    <!--메타포: 바로 가기 아이콘, 홈페이지 제목, 검색어, 설명-->
+    <meta name="title" content="안산시청 관광문화 홈페이지">
+    <meta name="keywords" content="안산 문화관광, 안산시청 문화관광, 안산시 여행정보">
+    <meta name="description" content="안산 문화관광 홈페이지">
+    <!-- 오픈 그래프 -->
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="안산 문화관광 홈페이지">
+    <meta property="og:site_name" content="안산 관광문화">
+    <meta property="og:url" content="https://www.ansan.go.kr/tourinfo/main/main.do">   <!-- 실제 사이트 주소로 변경 -->
+    <meta property="og:image" content="">
+    
+    <!--오픈 그래프-->
+    <!--폰트,초기화(reset,css),아이콘-->
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="iconset.css">
+    <link rel="stylesheet" href="vs.css">
+    <link rel="stylesheet" href="main2.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="common.css">
+
+    <style>
+        h1, h2, h3, h4, h5, h6 {font-family: 'Noto', sans-serif;}
+        h1 { font-weight: 900; font-size: 72px;}
+        h2 { font-weight: 800; font-size: 60px;}
+        h3 { font-weight: 700; font-size: 48px;}
+        h4 { font-weight: 600; font-size: 36px;}
+        p { font-family: 'Noto', sans-serif; font-weight: 400px; line-height: 20px;}
+        p.light { font-weight: 400;}
+        p.bold {font-weight: 700;}
+        p.seoul { font-family: 'SeoulAlrim'; font-weight: 700;}
+        span.txt_color { color: rgb(1, 115, 190);}
+    </style>
+    <style>
+    #vs {
+        position:relative;
+    }
+    #vs .img_box {
+        width:300vw;
+        overflow: hidden;
+        transition: 0.8s; 
+    }
+
+    #vs .img_box li {
+        width: 100vw;
+        float:left;
+        position: relative;
+    }
+
+    #vs img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .tit_box {
+        position: absolute;
+        top: 0;
+        width: 100%; 
+        left: 40px;
+        color: #fff;
+    }
+
+    .tit_box h3 {
+        text-align: center;
+        font-family: 'noto';
+        font-size: 92px;
+        text-shadow: 2px 2px 0 #05AFF2;
+    }
+
+    .tit_box a {
+        display: block;
+        width: 150px;
+        line-height: 60px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 300;
+        clear: both;
+        margin: 10px auto;
+        color: #fff;
+        text-shadow: 1px 1px 0px #05AFF2;
+        background-color: rgba(5, 115, 192, 0.6);
+        transition: 0.6s; 
+        border-radius: 35px 0px 35px 0px; 
+    }
+
+    .tit_box a:hover {
+        border-radius: 0px 35px 0px 35px;
+    }
+
+    .btn_box {
+        position:absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 10;
+        width: 100%;
+        height:24px;
+    }
+    .btn_wrap {
+        width: 80px;
+        margin: 0 auto;
+        display: flex;
+    }
+    .btn_wrap li {
+        width: 25px;
+    }
+    .vs_btn {
+        display: block;
+        width: 15px;
+        height: 15px;
+        border-radius: 10px;
+        background-color: #fff;
+        cursor: pointer;
+        border:1px solid #ffffff;
+        box-shadow: 1px 1px 0px blur #fff;
+    }
+    </style>
+    <style>
+/* html body를 붙여 선택자 점수를 가장 높게 만듭니다 */
+    #relation ul li {
+    position: relative !important;
+    overflow: visible !important; /* 내부 박스가 튀어나오게 허용 */
+}
+
+    #relation .sel {
+    bottom: 100% !important;   /* 부모 li 바로 위부터 시작 (숫자 대신 100%) */
+    left: 0 !important;
+    height: 0 !important;
+    display: block !important;
+    visibility: hidden !important;
+    transition: height 0.6s !important;
+}
+
+/* 체크 시 동작 강제 적용 */
+html body #relation input[type=radio]:checked ~ .sel {
+    height: 200px !important;
+    visibility: visible !important;
+    z-index: 9999 !important;   /* 다른 요소에 가려지지 않게 최상단 배치 */
+}
+</style>
+    
+</head>
+<body>
+    <div class="wrap">
+        <header id="hd">
+            <div class="container">
+                <a href="" class="logo">
+                    <img src="./output/longlogo.png" alt="안산문화관광로고">
+                </a>
+                <nav class="gnb">
+                    <ul class="menu">
+                        <li>
+                            <a href="sub1.html" class="dp1">관광명소</a>
+                            <ul class="sub">
+                                <li><a href="sub1.html">안산12경</a></li>
+                                <li><a href="sub12.html">안산 BIG5가치</a></li>
+                                <li><a href="sub13.html">김홍도 축제</a></li>
+                                <li><a href="sub14.html">자연관광</a></li>
+                                <li><a href="sub15.html">문화관광</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub2.html" class="dp2">테마여행</a>
+                            <ul class="sub">
+                                <li><a href="sub21.html">안산시티투어</a></li>
+                                <li><a href="sub22.html">안산생태관광</a></li>
+                                <li><a href="sub23.html">안산-대부도 뱃길</a></li>
+                                <li><a href="sub24.html">안산스탬프투어</a></li>
+                                <li><a href="sub25.html">대부도 3박4일</a></li>
+                            </ul>
+                            <nav class="tnb"><a href=""></a><a href=""></a><a href=""></a></nav>
+                        </li>
+                        <li>
+                            <a href="sub3.html" class="dp3">안산의 축제</a>
+                            <ul class="sub">
+                                <li><a href="sub31.html">국제거리극축제</a></li>
+                                <li><a href="sub32.html">세계인의 날 축제</a></li>
+                                <li><a href="sub33.html">별망성예술제</a></li>
+                                <li><a href="sub34.html">단원미술제</a></li>
+                                <li><a href="sub35.html">대부포도축제</a></li>
+                            </ul>
+                            <nav class="tnb"><a href=""></a><a href=""></a><a href=""></a></nav>
+                        </li>
+                        <li>
+                            <a href="sub4.html" class="dp4">관광안내</a>
+                            <ul class="sub">
+                                <li><a href="sub41.html">안산의 맛</a></li>
+                                <li><a href="sub42.html">교통정보</a></li>
+                                <li><a href="sub43.html">날씨 * 물때</a></li> <!-- 별모양 가운데 점으로 바꾸기 !-->
+                                <li><a href="sub44.html">관광지도</a></li>
+                                <li><a href="sub45.html">문화관광해설 예약</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub5.html" class="dp5">여행길잡이</a>
+                            <ul class="sub">
+                                <li><a href="sub51.html">공지사항</a></li>
+                                <li><a href="sub52.html">관광안내소</a></li>
+                                <li><a href="sub53.html">관광홍보물 신청</a></li>
+                                <li><a href="sub54.html">관광사진</a></li>
+                                <li><a href="sub55.html">관광홍보 영상</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="tnb">
+                        <a href="log.html">로그인</a>
+                        <a href="join.html">회원가입</a>
+                        <a href="contact.html">contact us</a>
+                </nav>
+            </div>
+    </header>
+        <main class="content">
+            <figure id="vs">
+            <input type="radio" id="ra1" class="ra" name="ra" checked>
+            <input type="radio" id="ra2" class="ra" name="ra">
+            <input type="radio" id="ra3" class="ra" name="ra">
+                <ul class="img_box">
+                    <li>
+                        <img src="./output/bgi1.jpg" alt="시화호발전조력소">
+                        <div class="tit_box">
+                            <h3> 시화호 발전 조력소 </h3>
+                                <a href="https://www.kwater.or.kr/website/tlight.do">자세히보기
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="./output/bgi2.jpg" alt="대부해솔길">
+                        <div class="tit_box">
+                            <h3>대부해솔길</h3>
+                            <a href="https://xn--2e0b93jnti.kr/">자세히보기</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="./output/bgi3.jpg" alt="구봉도 낙조">
+                        <div class="tit_box">
+                            <h3>구봉도 낙조</h3>
+                            <a href="https://구봉도.kr/64">자세히보기</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="btn_box">
+                <ul class="btn_wrap">
+                    <li><label for="ra1" class="vs_btn" id="vs_btn1"></label></li>
+                    <li><label for="ra2" class="vs_btn" id="vs_btn2"></label></li>
+                    <li><label for="ra3" class="vs_btn" id="vs_btn3"></label></li>
+                </ul>
+            </div>
+            </figure>
+
+            <section class="page" id="page1">
+                <div class="page_wrap">
+                    <h2 class="page_title">안산의 관광 명소</h2>
+                    <h2 class="tit4">볼거리, 즐길거리가 가득한 안산에서 멋진 추억을 만드세요!</h2>
+                    <div class="page_grid">
+                    <div class="row2">
+                        <figure id="big_thumb1" class="big_thumb">
+                            <a href="">
+                                <img src="./output/image-row11.jpg" alt="대부해솔길">
+                                    <div class="thumb_content">
+                                        <h5 class="tit2">안산 12경</h5>
+                                        <!-- <span>
+                                            <strong>안산 12경</strong>
+                                            <em>자세히보기</em>
+                                        </span> -->
+                                    </div>
+                            </a>
+                        </figure>
+                        <figure id="big_thumb2" class="big_thumb">
+                            <a href="">
+                                <img src="./output/image-row21.jpg" alt="안산시티투어" >
+                                    <div class="thumb_content">
+                                        <h5 class="tit2">안산시티투어</h5>
+                                    </div>
+                            </a>
+                            </figure>
+                        <figure id="big_thumb3" class="big_thumb">
+                            <a href="">
+                                <img src="./output/image-row31.jpg" alt="안산 축제">
+                                    <div class="thumb_content">
+                                        <h5 class="tit2">안산축제</h5>
+                                    </div>
+                            </a>
+                        </figure>
+                        <figure id="big_thumb4" class="big_thumb">
+                            <a href="">
+                                <img src="./output/image-row41.jpg" alt="문화유적지">
+                                <div class="thumb_content">
+                                    <h5 class="tit2">문화유적지</h5>
+                                </div>
+                            </a>
+                        </figure>
+                        <figure id="big_thumb5" class="big_thumb">
+                            <a href="">
+                                <img src="./output/image-row51.jpg" alt="생태/식물원/공원">
+                                <div class="thumb_content">
+                                    <h5 class="tit2">생태/식물원/공원</h5>
+                                </div>
+                            </a>
+                        </figure>
+                        <figure id="big_thumb6" class="big_thumb">
+                            <a href="">
+                                <img src="./output/image-row61.jpg" alt="박물/전시관">
+                                <div class="thumb_content">
+                                    <h5 class="tit2">박물/전시관</h5>
+                                </div>
+                            </a>
+                        </figure>
+                        <figure id="big_thumb7" class="big_thumb">
+                            <a href="">
+                                <img src="./output/image-row71.jpg" alt="트레킹">
+                                <div class="thumb_content">
+                                    <h5 class="tit2">트레킹</h5>
+                                </div>
+                            </a>
+                        </figure>
+                        <figure id="big_thumb8" class="big_thumb">
+                            <a href="">
+                                <img src="./output/image-row81.jpg" alt="문화인물">
+                                <div class="thumb_content">
+                                    <h5 class="tit2">문화인물</h5>
+                                </div>
+                            </a>
+                        </figure>
+                        </div>
+                    </div>
+                </div>
+        </section>
+<a href="#" class="btn-top">TOP</a>
+
+        <section class="page" id="page2">
+                <div class="page_wrap">
+                    <h2 class="page_title">안산시 <span class="txt_color">여행정보</span></h2>
+                    <h2 class="tit4">안산의 매력을 한껏 느끼고 싶다면</h2>
+                    <div class="page_grid2">
+                    <div class="row3">
+                        <div class="movie_wrap" id="movie_wrap2">
+                            <ul class="movie_lst">
+                                <li class="col" id="movie1"><a href="" class="movie" title="새 창 열림"></a></li>
+                                <li class="col" id="movie2"><a href="" class="movie" title="새 창 열림"></a></li>
+                                <li class="col" id="movie3"><a href="" class="movie" title="새 창 열림"></a></li>
+                                <li class="col" id="movie4"><a href="" class="movie" title="새 창 열림"></a></li>
+                                <li class="col" id="movie5"><a href="" class="movie" title="새 창 열림"></a></li>
+                                <li class="col" id="movie6"><a href="" class="movie" title="새 창 열림"></a></li>
+                            </ul>
+                        </div>
+                  
+                    </div>
+            </div>
+    <div class="row4">
+                        <h4 class="box_tit">자주 찾는 메뉴</h4>
+                        <ul class="box_lst">
+                            <li class="box_item" id="box_item1">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">안산-대부도 뱃길</h5>
+                                </a>
+                            </li>
+                            <li class="box_item" id="box_item2">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">안산관광인스타그램</h5>
+                                </a>
+                            </li>
+                            <li class="box_item" id="box_item3">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">대부해솔길</h5>
+                                </a>
+                            </li>
+                            <li class="box_item" id="box_item4">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">추천여행코스</h5>
+                                </a>
+                            </li>
+                            <li class="box_item" id="box_item5">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">공지사항</h5>
+                                </a>
+                            </li>
+                            <li class="box_item" id="box_item6">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">교통정보</h5>
+                                </a>
+                            </li>
+                            <li class="box_item" id="box_item7">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">스탬프투어후기</h5>
+                                </a>
+                            </li>
+                            <li class="box_item" id="box_item8">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">날씨/물때</h5>
+                                </a>
+                            </li>
+                            <li class="box_item" id="box_item9">
+                                <a href="">
+                                    <div class="box_img"></div>
+                                    <h5 class="box_item_tit">홍보물신청</h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        </section>
+        </main>
+            
+        <footer id="ft">
+            <div class="container">
+                <nav id="relation">
+                    <ul>
+                        <li>
+                            <input type="radio" name="sel" id="ra11">
+                            <label for="ra11">관광사업소</label>
+                            <div class="sel" id="sel1">
+                                <a href="">선택1</a>
+                                <a href="">선택2</a>
+                                <a href="">선택3</a>
+                                <a href="">선택4</a>
+                                <a href="">선택5</a>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" name="sel" id="ra12">
+                            <label for="ra12">면/동</label>
+                            <div class="sel" id="sel2">
+                                <a href="">선택1</a>
+                                <a href="">선택2</a>
+                                <a href="">선택3</a>
+                                <a href="">선택4</a>
+                                <a href="">선택5</a>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" name="sel" id="ra13">
+                            <label for="ra13">시/군청</label>
+                            <div class="sel" id="sel3">
+                                <a href="">선택1</a>
+                                <a href="">선택2</a>
+                                <a href="">선택3</a>
+                                <a href="">선택4</a>
+                                <a href="">선택5</a>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" name="sel" id="ra14">
+                            <label for="ra14">패밀리사업소</label>
+                            <div class="sel" id="sel4">
+                                <a href="">선택1</a>
+                                <a href="">선택2</a>
+                                <a href="">선택3</a>
+                                <a href="">선택4</a>
+                                <a href="">선택5</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <nav id="banner_bar">
+                    <ul>
+                        <li><a href="https://www.ansanart.com/index.do"><img src="./output/banner1.jpg" alt="안산문화재단"></a></li>
+                        <li><a href="https://korean.visitkorea.or.kr/main/main.do"><img src="./output/banner2.jpg" alt="대한민국 구석구석"></a></li>
+                        <li><a href="https://ggtour.or.kr/gto/"><img src="./output/banner3.jpg" alt="경기관광공사"></a></li>
+                        <li><a href="https://www.kwater.or.kr/website/tlight.do"><img src="./output/banner4.jpg" alt="시화호조력발전소"></a></li>
+                        <li><a href="https://www.medicalkorea.or.kr/en/index"><img src="./output/banner5.jpg" alt="MEDICAL KOREA"></a></li>
+                    </ul>
+                </nav>
+                <nav id="fnb">
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">저작권정책</a>
+                    <a href="#">개인정보위탁현황</a>
+                    <a href="#">홈페이지 의견접수</a>
+                </nav>
+                <div class="copyright">
+                    <p class="addr"> 15585 경기도 안산시 단원구 화랑로 387 TEL : 1666-1234</p>
+                    <p class="copy"> COPYRIGHT ⓒ 2019 ANSAN CITY</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
