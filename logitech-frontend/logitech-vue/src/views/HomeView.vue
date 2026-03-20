@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, computed, ref } from "vue";
 import { getItems } from "@/services/itemService";
-import Card from "@/components/itemCard.vue";
+import Card from "@/components/ItemCard.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter()
