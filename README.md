@@ -75,7 +75,7 @@
 
 
 ```
-📁 Backend (Spring Boot)
+📁 Backend
 src/main/java/com/example/Logitech
 ├─ config        # 보안 및 비밀번호 암호화 설정
 ├─ controller    # API 엔드포인트 (회원/상품/장바구니/주문/리뷰/QnA)
@@ -90,8 +90,8 @@ src/main/resources/
 
 build.gradle         # 빌드 및 의존성 설정
 
-📁 Frontend (Vue.js)
-src
+📁 Frontend
+src/
 ├─ api           # 외부 API 연동
 ├─ assets        # 이미지, 폰트 등 정적 파일
 ├─ components    # 재사용 가능한 UI 컴포넌트
