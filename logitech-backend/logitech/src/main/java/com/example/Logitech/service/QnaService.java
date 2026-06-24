@@ -1,83 +1,114 @@
 package com.example.Logitech.service;
 
 import com.example.Logitech.domain.Qna;
+import com.example.Logitech.dto.QnaRequestDto;
+import com.example.Logitech.dto.QnaResponseDto;
 import com.example.Logitech.repository.QnaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class QnaService {
 
-    public final QnaRepository qnaRepository;
+    private final QnaRepository qnaRepository;
 
-    //질문 및 답변 목록
-    public List<Qna> getQnaList() {
-        return qnaRepository.findAllGrouped();
+    public List<QnaResponseDto> getQnaList() {
+        List<Qna> qnaList = qnaRepository.findAllGrouped();
+        Set<Long> answeredParentIds = qnaList.stream()
+                .filter(qna -> qna.getLevel() == 2)
+                .map(Qna::getParentId)
+                .collect(Collectors.toSet());
+
+        return qnaList.stream()
+                .map(qna -> new QnaResponseDto(qna, answeredParentIds.contains(qna.getId())))
+                .toList();
     }
 
-    //제목으로 질문 검색
-    public List<Qna> findByTitle(String keyword) {
-        return qnaRepository.findByTitle(keyword);
+    public List<QnaResponseDto> findByTitle(String keyword) {
+        return qnaRepository.findByTitle(keyword)
+                .stream()
+                .map(QnaResponseDto::new)
+                .toList();
     }
 
-    //질문/답변 상세보기
     @Transactional
-    public List<Qna> detail(Long id) {
-        Qna question = qnaRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException ("존재하지 않는 글입니다."));
-        question.setViewCount(question.getViewCount()+1);
+    public List<QnaResponseDto> detail(Long id) {
+        Qna question = qnaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Q&A not found."));
+
+        question.setViewCount(question.getViewCount() + 1);
         qnaRepository.save(question);
-        return qnaRepository.findByParentIdOrderByLevelAscCreatedAtAsc(id);
-    }
 
-    //질문 등록
-    @Transactional
-    public Qna addQuestion(Qna qna) {
-        qna.setLevel(1);
-        Qna q = qnaRepository.save(qna);
-        q.setParentId(q.getId());
-        return qnaRepository.save(q);
-    }
-
-    //답변 등록 ( 관리자 )
-    @Transactional
-    public Qna addAnswer(Long parentId, Qna qna) {
-        qna.setLevel(2);
-        qna.setParentId(parentId);
-        return qnaRepository.save(qna);
+        return qnaRepository.findByParentIdOrderByLevelAscCreatedAtAsc(id)
+                .stream()
+                .map(QnaResponseDto::new)
+                .toList();
     }
 
     @Transactional
-    //질문,답변 수정
-    public Qna updateQna(Long id, Qna qna, String loginUser, boolean isAdmin) {
+    public QnaResponseDto addQuestion(QnaRequestDto request, String writer) {
+        Qna qna = Qna.builder()
+                .level(1)
+                .title(request.getTitle())
+                .content(request.getContent())
+                .writer(writer)
+                .build();
+
+        Qna saved = qnaRepository.save(qna);
+        saved.setParentId(saved.getId());
+
+        return new QnaResponseDto(qnaRepository.save(saved));
+    }
+
+    @Transactional
+    public QnaResponseDto addAnswer(Long parentId, QnaRequestDto request, String writer) {
+        Qna qna = Qna.builder()
+                .level(2)
+                .parentId(parentId)
+                .title(request.getTitle())
+                .content(request.getContent())
+                .writer(writer)
+                .build();
+
+        return new QnaResponseDto(qnaRepository.save(qna));
+    }
+
+    @Transactional
+    public QnaResponseDto updateQna(Long id, QnaRequestDto request, String loginUser, boolean isAdmin) {
         Qna origin = qnaRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("Q&A not found."));
+
         if (!origin.getWriter().equals(loginUser) && !isAdmin) {
-            throw new RuntimeException("수정 권한이 없습니다.");
+            throw new IllegalArgumentException("You do not have permission to update this Q&A.");
         }
-        origin.setTitle(qna.getTitle());
-        origin.setContent(qna.getContent());
-        return qnaRepository.save(origin);
+
+        origin.setTitle(request.getTitle());
+        origin.setContent(request.getContent());
+
+        return new QnaResponseDto(qnaRepository.save(origin));
     }
 
-    //질문,답변 삭제 + 질문 삭제시 답변도 같이 삭제
     @Transactional
     public void delete(Long id, String loginUser, boolean isAdmin) {
         Qna origin = qnaRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("Q&A not found."));
+
         if (!origin.getWriter().equals(loginUser) && !isAdmin) {
-            throw new RuntimeException("삭제 권한이 없습니다.");
+            throw new IllegalArgumentException("You do not have permission to delete this Q&A.");
         }
 
-        if(origin.getLevel() == 1) {
-            List<Qna> list = qnaRepository.findByParentIdOrderByLevelAscCreatedAtAsc(origin.getId());
-            qnaRepository.deleteAll(list);
-        } else {
-            qnaRepository.deleteById(id);
+        if (origin.getLevel() == 1) {
+            List<Qna> qnaList = qnaRepository.findByParentIdOrderByLevelAscCreatedAtAsc(origin.getId());
+            qnaRepository.deleteAll(qnaList);
+            return;
         }
+
+        qnaRepository.deleteById(id);
     }
 }

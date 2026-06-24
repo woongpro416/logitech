@@ -50,16 +50,6 @@ const router = createRouter({
             component: () => import('@/views/MyPageEditView.vue')
         },
         {
-            path: '/mypage',
-            name: '/mypage',
-            component: () => import('@/views/MyPageView.vue')
-        },
-        {
-            path: '/mypage/edit',
-            name: '/mypage-edit',
-            component: () => import('@/views/MyPageEditView.vue')
-        },
-        {
             path: '/admin',
             name: '/admin',
             component: () => import('@/views/AdminDashboard.vue')
@@ -102,7 +92,7 @@ const router = createRouter({
         {
             path: '/admin/orders',
             name: '/admin-orders',
-            component: () => import('@/views/AdminOrderview.vue')
+            component: () => import('@/views/AdminOrderView.vue')
         },
         {
             path: '/items',

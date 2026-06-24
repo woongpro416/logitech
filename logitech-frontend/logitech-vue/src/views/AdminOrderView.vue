@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import axios from 'axios'
+import api from '@/api/axios.js'
 
 
 const orders = ref([])
@@ -9,7 +9,7 @@ const filterStatus = ref('ALL')
 onMounted(() => loadOrders())
 
 const loadOrders = async () => {
-    const res = await axios.get('/orders/list').catch(e => e.response)
+    const res = await api.get('/orders/list').catch(e => e.response)
     if (res?.status === 200) orders.value = res.data
 }
 

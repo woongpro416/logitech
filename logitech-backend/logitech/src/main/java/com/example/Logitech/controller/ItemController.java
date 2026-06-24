@@ -3,6 +3,7 @@ package com.example.Logitech.controller;
 import com.example.Logitech.dto.ItemFormDto;
 import com.example.Logitech.dto.ItemResponseDto;
 import com.example.Logitech.service.ItemService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class ItemController {
 
     //상품 등록 처리
     @PostMapping("/new")
-    public Long saveItem(@RequestBody ItemFormDto dto) {
+    public Long saveItem(@Valid @RequestBody ItemFormDto dto) {
         return itemService.saveItem(dto);
     }
 
@@ -47,7 +48,7 @@ public class ItemController {
 
     //상품 수정 처리
     @PutMapping("/edit/{itemId}")
-    public void updateItem(@PathVariable Long itemId, @RequestBody ItemFormDto dto) {
+    public void updateItem(@PathVariable Long itemId, @Valid @RequestBody ItemFormDto dto) {
         itemService.updateItem(itemId, dto);
     }
 

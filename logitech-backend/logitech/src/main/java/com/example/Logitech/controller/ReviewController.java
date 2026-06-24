@@ -3,6 +3,7 @@ package com.example.Logitech.controller;
 import com.example.Logitech.dto.ReviewRequestDto;
 import com.example.Logitech.dto.ReviewResponseDto;
 import com.example.Logitech.service.ReviewService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,13 +35,13 @@ public class ReviewController {
 
     //리뷰 등록
     @PostMapping("/new")
-    public Long saveReview(@RequestBody ReviewRequestDto dto) {
+    public Long saveReview(@Valid @RequestBody ReviewRequestDto dto) {
         return reviewService.saveReview(dto);
     }
 
     //리뷰 수정
     @PutMapping("/edit/{reviewId}")
-    public void updateReview(@PathVariable Long reviewId, @RequestBody ReviewRequestDto dto) {
+    public void updateReview(@PathVariable Long reviewId, @Valid @RequestBody ReviewRequestDto dto) {
         reviewService.updateReview(reviewId, dto);
     }
 

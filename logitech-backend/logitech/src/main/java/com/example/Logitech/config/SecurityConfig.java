@@ -2,6 +2,7 @@ package com.example.Logitech.config;
 
 import com.example.Logitech.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,11 +13,16 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
+
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
 
     private final MemberService memberService;
+
+    @Value("${app.cors.allowed-origins}")
+    private String allowedOrigins;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -42,10 +48,13 @@ public class SecurityConfig {
                         .requestMatchers("/qna/detail/**").permitAll()
                         .requestMatchers("/qna/search").permitAll()
                         .requestMatchers("/qna/answer/**").hasRole("ADMIN")
+                        .requestMatchers("/qna/question").authenticated()
+                        .requestMatchers("/qna/update/**").authenticated()
+                        .requestMatchers("/qna/delete/**").authenticated()
 
                         // 로그인한 사용자만
                         .requestMatchers("/orders/**").authenticated()
-                        .requestMatchers("/cart/**").authenticated()
+                        .requestMatchers("/carts/**").authenticated()
                         .requestMatchers("/members/edit/**").authenticated()
                         .requestMatchers("/members/delete/**").authenticated()
 
@@ -102,7 +111,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:5173");
+        configuration.setAllowedOrigins(Arrays.stream(allowedOrigins.split(","))
+                .map(String::trim)
+                .filter(origin -> !origin.isBlank())
+                .toList());
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);

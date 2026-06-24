@@ -7,23 +7,23 @@ export default defineConfig({
   server: {
     proxy: {
       "/members": {
-        target: "http://localhost:8090",
+        target: process.env.VITE_DEV_API_PROXY || "http://localhost:8090",
         changeOrigin: true
       },
       "/items": {
-        target: "http://localhost:8090",
+        target: process.env.VITE_DEV_API_PROXY || "http://localhost:8090",
         changeOrigin: true
       },
       "/carts": {
-        target: "http://localhost:8090",
+        target: process.env.VITE_DEV_API_PROXY || "http://localhost:8090",
         changeOrigin: true
       },
       "/orders": {
-        target: "http://localhost:8090",
+        target: process.env.VITE_DEV_API_PROXY || "http://localhost:8090",
         changeOrigin: true
       },
       "/images": {
-        target: "http://localhost:8090",
+        target: process.env.VITE_DEV_API_PROXY || "http://localhost:8090",
          changeOrigin: true
       }
     }

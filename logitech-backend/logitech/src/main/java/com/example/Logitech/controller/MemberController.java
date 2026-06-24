@@ -9,6 +9,7 @@ import com.example.Logitech.dto.MemberUpdateDto;
 import com.example.Logitech.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,7 +36,7 @@ public class MemberController {
 
     //회원가입 처리
     @PostMapping("/join")
-    public Long join(@RequestBody MemberJoinRequestDto dto) {
+    public Long join(@Valid @RequestBody MemberJoinRequestDto dto) {
         return memberService.join(dto);
     }
 
@@ -71,7 +72,7 @@ public class MemberController {
 
     //회원 정보 변경 처리
     @PutMapping("/edit/{memberID}")
-    public void updateMember(@PathVariable Long memberID, @RequestBody MemberUpdateDto request) {
+    public void updateMember(@PathVariable Long memberID, @Valid @RequestBody MemberUpdateDto request) {
         memberService.updateMember(memberID, request);
     }
 
@@ -97,7 +98,7 @@ public class MemberController {
 
     //로그인 확인
     @PostMapping("/login")
-    public MemberResponseDto login(@RequestBody MemberLoginRequestDto request,
+    public MemberResponseDto login(@Valid @RequestBody MemberLoginRequestDto request,
                                    HttpServletRequest httpRequest) {
         MemberResponseDto response = memberService.login(request);
 

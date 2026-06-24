@@ -5,6 +5,7 @@ import com.example.Logitech.dto.OrderRequestDto;
 import com.example.Logitech.dto.OrderResponseDto;
 import com.example.Logitech.repository.MemberRepository;
 import com.example.Logitech.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class OrderController {
 
     //주문 생성
     @PostMapping("/new")
-    public Long createOrder(@RequestBody OrderRequestDto dto) {
+    public Long createOrder(@Valid @RequestBody OrderRequestDto dto) {
         Member member = memberRepository.findById(dto.getMemberId())
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 회원입니다."));
         return orderService.createOrder(member, dto);

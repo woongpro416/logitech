@@ -188,7 +188,7 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useAccountStore } from "@/store/accountStore";
-import axios from "axios";
+import api from "@/api/axios.js";
 
 const router = useRouter();
 const accountStore = useAccountStore();
@@ -204,7 +204,7 @@ onMounted(async () => {
     return;
   }
 
-  const res = await axios.get("/admin/dashboard").catch((e) => e.response);
+  const res = await api.get("/admin/dashboard").catch((e) => e.response);
   if (res?.status === 200) {
     const data = res.data;
     stats.value.totalMembers = data.totalMembers;

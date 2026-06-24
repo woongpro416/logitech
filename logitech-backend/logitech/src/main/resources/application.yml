@@ -2,20 +2,24 @@ spring:
   application:
     name: Logitech
   datasource:
-    url: jdbc:postgresql://localhost:5432/logitech
-    username: postgres
-    password: 1004
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/logitech}
+    username: ${SPRING_DATASOURCE_USERNAME:logitech}
+    password: ${SPRING_DATASOURCE_PASSWORD:logitech1234}
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:false}
   thymeleaf:
     cache: false
   security:
     user:
-      name: admin
-      password: 1234
+      name: ${SPRING_SECURITY_USER_NAME:admin}
+      password: ${SPRING_SECURITY_USER_PASSWORD:admin1234}
 
 
 server:
-  port: 8090
+  port: ${SERVER_PORT:8090}
+
+app:
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}

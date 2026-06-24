@@ -14,6 +14,7 @@ const showAnswerModal = ref(false)
 const showEditModal = ref(false)
 const answerForm = ref({ content: '' })
 const editForm = ref({ title: '', content: '' })
+const editingQnaId = ref(null)
 
 const load = async () => {
     const res = await getQnaDetail(route.params.id)
@@ -44,6 +45,7 @@ const submitAnswer = async () => {
 
 // 수정 모달 열기
 const openEditModal = (target) => {
+    editingQnaId.value = target.id
     editForm.value = { title: target.title, content: target.content }
     showEditModal.value = true
 }
@@ -61,11 +63,7 @@ const submitEdit = async (id) => {
 // 삭제
 const remove = async (id) => {
     if (!confirm('삭제하시겠습니까?')) return
-    const res = await deleteQna(
-        id,
-        accountStore.loginUser.name,
-        accountStore.loginUser.role === 'ADMIN'
-    )
+    const res = await deleteQna(id)
     if (res?.status === 200 || res?.status === 204) {
         alert('삭제되었습니다.')
         router.push('/qna')
@@ -178,7 +176,7 @@ const isAdmin = () => accountStore.loginUser?.role === 'ADMIN'
         </div>
         <div class="d-flex gap-2">
           <button class="btn btn-primary w-100"
-            @click="submitEdit(showEditModal === 'answer' ? answer.id : question.id)">
+            @click="submitEdit(editingQnaId)">
             수정 완료
           </button>
           <button class="btn btn-outline-secondary w-100" @click="showEditModal = false">취소</button>

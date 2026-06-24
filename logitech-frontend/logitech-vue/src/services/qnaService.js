@@ -6,8 +6,8 @@ export const getQnaList = () => {
 }
 
 //제목 검색
-export const searchQna = (title) => {
-    return api.get('/qna/search', { params: { title }}).catch(e => e.response)
+export const searchQna = (keyword) => {
+    return api.get('/qna/search', { params: { keyword }}).catch(e => e.response)
 }
 
 //상세보기
@@ -31,6 +31,6 @@ export const updateQna = (id, data) => {
 }
 
 //삭제
-export const deleteQna = (id, loginUser, isAdmin) => {
-    return api.delete(`/qna/delete/${id}`, { params: { loginUser, isAdmin }}).catch(e => e.response)
+export const deleteQna = (id) => {
+    return api.delete(`/qna/delete/${id}`).catch(e => e.response)
 }

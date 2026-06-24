@@ -1,18 +1,18 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import api from '@/api/axios.js'
 
 const items = ref([])
 
 onMounted(() => loadItems())
 
 const loadItems = async () => {
-    const res = await axios.get('/items/list').catch(e => e.response)
+    const res = await api.get('/items/list').catch(e => e.response)
     if (res?.status === 200) items.value = res.data
 }
 
 const updateStock = async (item) => {
-    const res = await axios.patch(`/items/stock/${item.itemId}`, null, {
+    const res = await api.patch(`/items/stock/${item.itemId}`, null, {
         params: { stock: item.stock }
     }).catch(e => e.response)
     if (res?.status === 200 || res?.status === 204) {
