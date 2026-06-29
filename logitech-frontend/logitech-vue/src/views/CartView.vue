@@ -3,6 +3,7 @@ import { getCarts, deleteItem } from "../services/cartService";
 import { reactive, onMounted, computed } from "vue";
 import { useCartStore } from "../store/cartStore";
 import { useRouter } from "vue-router";
+import { resolveMediaUrl } from "../utils/mediaUrl";
 
 const state = reactive({
   items: [],
@@ -57,7 +58,7 @@ onMounted(load);
       <template v-if="state.items.length">
         <ul class="items">
           <li v-for="i in state.items" :key="i.cartId">
-            <img :alt="`상품사진(${i.itemName})`" :src="i.imgPath" />
+            <img :alt="`상품사진(${i.itemName})`" :src="resolveMediaUrl(i.imgPath)" />
             <b class="name">{{ i.itemName }}</b>
             <span class="price">{{ i.price.toLocaleString() }}원</span>
             <!-- ✅ 수량 표시 -->

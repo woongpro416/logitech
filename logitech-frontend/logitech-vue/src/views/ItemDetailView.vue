@@ -6,6 +6,7 @@ import { useCartStore } from '@/store/cartStore'
 import { getItem } from '@/services/itemService'
 import { addItem } from '@/services/cartService'
 import { getReviewsByItem } from '@/services/reviewService'
+import { resolveMediaUrl } from '@/utils/mediaUrl'
 
 const route = useRoute()
 const router = useRouter()
@@ -66,7 +67,7 @@ const renderStars = (rating) => '★'.repeat(rating) + '☆'.repeat(5 - rating)
       <div class="col-md-8">
         <div v-if="item" class="card shadow-sm">
           <div class="item-img"
-            :style="{ backgroundImage: `url(${item.imgPath})` }">
+            :style="{ backgroundImage: `url(${resolveMediaUrl(item.imgPath)})` }">
           </div>
           <div class="card-body p-4">
             <h4 class="card-title">{{ item.itemName }}</h4>

@@ -2,6 +2,7 @@
 import { addItem } from "@/services/cartService";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
+import { resolveMediaUrl } from "@/utils/mediaUrl";
 
 const props = defineProps({
   item: {
@@ -34,7 +35,7 @@ const put = async () => {
   <div class="card shadow-sm">
     <span
       class="img"
-      :style="{ backgroundImage: `url(${props.item.imgPath})` }"
+      :style="{ backgroundImage: `url(${resolveMediaUrl(props.item.imgPath)})` }"
       :aria-label="`상품사진(${props.item.name})`"
     ></span>
     <div class="card-body">

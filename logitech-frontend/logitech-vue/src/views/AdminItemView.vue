@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { getItems, saveItem, updateItem, deleteItem } from "@/services/itemService";
 import StockManagement from '@/components/StockManagement.vue'
+import { resolveMediaUrl } from "@/utils/mediaUrl";
 
 const items = ref([]);
 const showModal = ref(false);
@@ -97,7 +98,7 @@ const formatDate = (dateStr) => {
               <td>{{ item.itemId }}</td>
               <td>
                 <img
-                  :src="item.imgPath"
+                  :src="resolveMediaUrl(item.imgPath)"
                   style="width: 60px; height: 60px; object-fit: cover"
                   class="rounded"
                   @error="(e) => (e.target.style.display = 'none')"
@@ -138,7 +139,7 @@ const formatDate = (dateStr) => {
       <label class="form-label">이미지 URL</label>
       <input v-model="form.imgPath" type="text" class="form-control" placeholder="https://..." />
       <div v-if="form.imgPath" class="mt-2">
-        <img :src="form.imgPath" style="height: 100px; object-fit: cover" class="rounded"
+        <img :src="resolveMediaUrl(form.imgPath)" style="height: 100px; object-fit: cover" class="rounded"
           @error="(e) => (e.target.style.display = 'none')" />
       </div>
     </div>
